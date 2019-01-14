@@ -3,10 +3,13 @@ import Book from './Book.js'
 
 const Books = (props) => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h1>books</h1>
+
       <div className="list-group">
+
         <div className="list-group-item">
+
           <div className="row">
 
             <div className="col-md-2">title</div>

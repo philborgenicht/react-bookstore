@@ -17,9 +17,60 @@ class App extends Component {
     this.setState({books: json})
     }
 
+reorganize=(e)=>{
+  e.preventDefault()
+  this.setState({
+    books: this.state.books.filter(book=> book.title.toLowerCase().includes(e.target.search.value.toLowerCase()))
+  })
+}
+
+sortByTitle=(e)=>{
+  e.preventDefault()
+  this.setState({
+    books: this.state.books.sort((a,b)=>{
+      if(a.title<b.title){
+        return -1
+      }
+      if(a.title>b.title){
+        return 1
+      }
+      else{
+        return 0
+      }
+    })
+  })
+}
+sortByAuthor=(e)=>{
+  e.preventDefault()
+  this.setState({
+    books: this.state.books.sort((a,b)=>{
+      if(a.author<b.author){
+        return -1
+      }
+      if(a.author>b.author){
+        return 1
+      }
+      else{
+        return 0
+      }
+    })
+  })
+}
+
+
+
+
     render() {
     return (
-      <div className="App">
+      <div className="App container">
+      <form onSubmit={this.reorganize}>
+      <input type="text" id="search" name="search" placeholder="search for book..."/>
+      <button type="submit">search</button>
+      <button onClick={this.sortByTitle}>Sort by Book Title</button>
+      <button onClick={this.sortByAuthor}>Sort by Author Name</button>
+      </form>
+
+
       <Books bookList={this.state.books}/>
       </div>
 

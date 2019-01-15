@@ -12,7 +12,7 @@ const Book = (props) => {
         <div className="col-lg-3">${props.price.toFixed(2)}</div>
 
 
-        <button onClick={props.addToCart} name={props.title} >purchase</button>
+        <button className="btn-success"onClick={props.addToCart} name={props.title} >purchase</button>
 
 
       </div>

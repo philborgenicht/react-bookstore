@@ -1,1 +1,21 @@
+body{
 
+  font-size: 20px;
+  background-color: blue;
+}
+
+input{
+  border-radius: 15px
+}
+
+button{
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 30px
+}
+
+
+.columnheading{
+  font-size: 25px;
+}

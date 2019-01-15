@@ -4,7 +4,7 @@ import Book from './Book.js'
 const Books = (props) => {
   return (
     <div className="container-fluid">
-      <h1>books</h1>
+      <h1>Book Store</h1>
 
       <div className="list-group">
 
@@ -12,10 +12,10 @@ const Books = (props) => {
 
           <div className="row">
 
-            <div className="col-lg-3">title</div>
-            <div className="col-lg-3">author</div>
-            <div className="col-lg-3">pages</div>
-            <div className="col-lg-3">price</div>
+            <div className="col-lg-3 columnheading">Book Title</div>
+            <div className="col-lg-3 columnheading">Author</div>
+            <div className="col-lg-3 columnheading">Pages</div>
+            <div className="col-lg-3 columnheading">Price</div>
 
           </div>
         </div>

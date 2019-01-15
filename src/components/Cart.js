@@ -23,12 +23,14 @@ render(){
       <div>
       {this.props.booksInCart.filter(book =>(book.inCart===true)).map(book=>(
         <CartItem
+              removeCart={this.props.removeCart}
+
               title={book.title}
 
               price={book.price}/>))}
 
       </div>
-      <div className="col-md-6">TOTAL: ${}</div>
+      <div className="col-md-6">TOTAL: ${this.props.booksInCart.filter(book =>(book.inCart===true)).map(book=> book.price).reduce((sum,num)=>sum+num,0)}</div>
       </div>
       </div>
     </div>

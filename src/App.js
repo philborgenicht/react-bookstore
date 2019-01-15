@@ -23,8 +23,9 @@ class App extends Component {
 
 reorganize=(e)=>{
   e.preventDefault()
+  let newstate= this.state.books.filter(book=> book.title.toLowerCase().includes(e.target.search.value.toLowerCase()))
   this.setState({
-    books: this.state.books.filter(book=> book.title.toLowerCase().includes(e.target.search.value.toLowerCase()))
+    books: newstate
   })
 }
 
@@ -78,10 +79,23 @@ addToCart=(e)=>{
       books: [...this.state.books.slice(0, selectionIndex), newSelection ,...this.state.books.slice(selectionIndex+1)]
     }
   )
-
-
 }
 
+//remove from cart
+removeCart=(e)=>{
+  e.preventDefault()
+  let title = e.target.name
+  let newState = this.state
+  let avail=newState.books
+  let selection=avail.filter(book=> book.title===title)[0]
+  let newSelection= {...selection, inCart: false}
+  let selectionIndex= this.state.books.indexOf(selection)
+  this.setState(
+    {
+      books: [...this.state.books.slice(0, selectionIndex), newSelection ,...this.state.books.slice(selectionIndex+1)]
+    }
+  )
+}
 
 
 
@@ -89,22 +103,40 @@ addToCart=(e)=>{
 
     render() {
     return (
-      <div className="App container">
-<div class="row justify-content-center">
-      <form onSubmit={this.reorganize}>
-      <input type="text" id="search" name="search" placeholder="search for book..."/>
-      <button type="submit">search</button>
-      <button onClick={this.sortByTitle}>Sort by Book Title</button>
-      <button onClick={this.sortByAuthor}>Sort by Author Name</button>
-      </form>
+      <div className="App">
+<div className="container">
+<div className="row justify-content-center">
+<div className="col-lg-6">
+<br/><br/>
+
+      <Books bookList={this.state.books} sortByTitle={this.sortByTitle} addToCart={this.addToCart} />
+</div>
+<div className="col-lg-6">
+
+
+<br/><br/><br/><br/>
+<form onSubmit={this.reorganize}>
+<input type="text" id="search" name="search" placeholder="search for book..."/>
+<br/><br/>
+<button type="submit">search</button>
+<br/><br/>
+<button onClick={this.sortByTitle}>Sort by Book Title</button>
+<br/><br/>
+<button onClick={this.sortByAuthor}>Sort by Author Name</button>
+<br/><br/>
+</form>
+<br/><br/>
+  <Cart booksInCart={this.state.books} removeCart={this.removeCart}/>
+
 </div>
 
 
-      <Books bookList={this.state.books} sortByTitle={this.sortByTitle} addToCart={this.addToCart} />
+</div>
+</div>
+</div>
 
-  <Cart booksInCart={this.state.books}/>
 
-      </div>
+
 
 
     )

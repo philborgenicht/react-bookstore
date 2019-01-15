@@ -1,0 +1,8 @@
+<div>
+{this.props.booksInCart.filter(book =>(book.inCart===true)).map(book=>(
+  <Book
+        title={book.title}
+
+        price={book.price}/>))}
+
+</div>

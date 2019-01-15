@@ -12,16 +12,17 @@ const Books = (props) => {
 
           <div className="row">
 
-            <div className="col-md-2">title</div>
-            <div className="col-md-2">author</div>
-            <div className="col-md-2">pages</div>
-
+            <div className="col-lg-3">title</div>
+            <div className="col-lg-3">author</div>
+            <div className="col-lg-3">pages</div>
+            <div className="col-lg-3">price</div>
 
           </div>
         </div>
         <div>
         {props.bookList.map(book =>
-          <Book key={book.id}
+          <Book addToCart={props.addToCart}
+                key={book.id}
                 title={book.title}
                 author={book.author}
                 pages={book.pages}

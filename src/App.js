@@ -3,11 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import Books from './components/Books.js'
 import Book from './components/Book.js'
+import Cart from './components/Cart.js'
 
 
 
 class App extends Component {
   state = {
+
+
+
     books: []
     }
 
@@ -56,6 +60,29 @@ sortByAuthor=(e)=>{
     })
   })
 }
+//change state of book clicked from incart: false to incart: true
+addToCart=(e)=>{
+  e.preventDefault()
+  let title = e.target.name
+  let newState = this.state
+  console.log(newState)
+  let avail=newState.books
+  console.log(avail)
+  let selection=avail.filter(book=> book.title===title)[0]
+  let newSelection= {...selection, inCart: true}
+  console.log("selection:", selection)
+  console.log(newSelection)
+  let selectionIndex= this.state.books.indexOf(selection)
+  this.setState(
+    {
+      books: [...this.state.books.slice(0, selectionIndex), newSelection ,...this.state.books.slice(selectionIndex+1)]
+    }
+  )
+
+
+}
+
+
 
 
 
@@ -63,15 +90,20 @@ sortByAuthor=(e)=>{
     render() {
     return (
       <div className="App container">
+<div class="row justify-content-center">
       <form onSubmit={this.reorganize}>
       <input type="text" id="search" name="search" placeholder="search for book..."/>
       <button type="submit">search</button>
       <button onClick={this.sortByTitle}>Sort by Book Title</button>
       <button onClick={this.sortByAuthor}>Sort by Author Name</button>
       </form>
+</div>
 
 
-      <Books bookList={this.state.books}/>
+      <Books bookList={this.state.books} sortByTitle={this.sortByTitle} addToCart={this.addToCart} />
+
+  <Cart booksInCart={this.state.books}/>
+
       </div>
 
 

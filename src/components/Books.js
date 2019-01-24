@@ -16,6 +16,7 @@ const Books = (props) => {
             <div className="col-lg-3 columnheading">Author</div>
             <div className="col-lg-3 columnheading">Pages</div>
             <div className="col-lg-3 columnheading">Price</div>
+            
 
           </div>
         </div>

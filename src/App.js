@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
-    const response = await fetch('http://localhost:8082/api/books')
+    const response = await fetch('https://philapi.herokuapp.com/api/books')
     const json = await response.json()
     this.setState({books: json})
     }
